@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CareScope Analytics</title>
+    <meta
+      name="description"
+      content="Healthcare analytics dashboard for disease risk prediction, early diagnosis support, and hospital capacity planning."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <nav class="topbar">
+          <div class="brand">
+            <span class="brand-mark">+</span>
+            <span>CareScope Analytics</span>
+          </div>
+          <a class="pill-link nav-action" href="#predictor" data-target="predictor">Open Predictor</a>
+        </nav>
+
+        <div class="hero-grid">
+          <section class="hero-copy">
+            <p class="eyebrow">Healthcare & Medical Analytics</p>
+            <h1>Early-risk intelligence for faster clinical decisions.</h1>
+            <p class="hero-text">
+              A compact healthcare dashboard for disease-risk prediction, clinical indicators,
+              and quick patient screening.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary nav-action" href="#dashboard" data-target="dashboard">Explore Dashboard</a>
+              <a class="button button-secondary nav-action" href="#predictor" data-target="predictor">Open Predictor</a>
+            </div>
+          </section>
+
+          <section class="hero-panel">
+            <div class="panel-stat">
+              <span>Patients analyzed</span>
+              <strong id="patientCount">0</strong>
+            </div>
+            <div class="panel-stat">
+              <span>High-risk rate</span>
+              <strong id="highRiskRate">0%</strong>
+            </div>
+            <div class="panel-stat">
+              <span>Model accuracy</span>
+              <strong id="modelAccuracy">0%</strong>
+            </div>
+          </section>
+        </div>
+      </header>
+
+      <main>
+        <section id="dashboard" class="section">
+          <div class="section-heading">
+            <p class="eyebrow">Situation Room</p>
+            <h2>Operational snapshot</h2>
+          </div>
+          <div class="metrics-grid">
+            <article class="metric-card">
+              <span class="metric-label">Average glucose</span>
+              <strong id="avgGlucose">0</strong>
+              <p>Population baseline for metabolic stress.</p>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">Average systolic BP</span>
+              <strong id="avgSystolic">0</strong>
+              <p>Proxy for cardiovascular pressure trends.</p>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">Expected admissions</span>
+              <strong id="admissionForecast">0</strong>
+              <p>Projected near-term admissions from high-risk profiles.</p>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">Staffing advisory</span>
+              <strong id="staffingPlan">0</strong>
+              <p>Recommended extra care coordinators for the next week.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section analytics-layout">
+          <div class="section-heading">
+            <p class="eyebrow">Exploratory Data Analysis</p>
+            <h2>Key indicators</h2>
+          </div>
+
+          <div class="analytics-grid compact-grid">
+            <article class="panel">
+              <div class="panel-header">
+                <h3>Risk distribution</h3>
+                <p>Distribution across the full patient cohort.</p>
+              </div>
+              <div id="riskBars" class="chart-bars"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-header">
+                <h3>Feature influence</h3>
+                <p>Strongest indicators used by the model.</p>
+              </div>
+              <div id="featureImportance" class="importance-list"></div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-header">
+                <h3>Clinical correlations</h3>
+                <p>Top relationships with predicted disease risk.</p>
+              </div>
+              <div id="correlationGrid" class="correlation-grid"></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="predictor" class="section predictor-section">
+          <div class="section-heading">
+            <p class="eyebrow">Decision Support</p>
+            <h2>Patient risk predictor</h2>
+          </div>
+
+          <div class="predictor-grid">
+            <form id="riskForm" class="panel form-panel">
+              <div class="form-actions">
+                <button class="button button-secondary" id="loadHighRisk" type="button">Load High-Risk Sample</button>
+                <button class="button button-secondary" id="resetForm" type="button">Reset</button>
+              </div>
+              <div class="form-grid">
+                <label>
+                  <span>Age</span>
+                  <input type="number" name="age" min="18" max="95" value="58" required />
+                </label>
+                <label>
+                  <span>BMI</span>
+                  <input type="number" name="bmi" min="15" max="45" step="0.1" value="31.4" required />
+                </label>
+                <label>
+                  <span>Glucose</span>
+                  <input type="number" name="glucose" min="70" max="240" value="162" required />
+                </label>
+                <label>
+                  <span>Systolic BP</span>
+                  <input type="number" name="systolic" min="90" max="210" value="148" required />
+                </label>
+                <label>
+                  <span>Cholesterol</span>
+                  <input type="number" name="cholesterol" min="120" max="360" value="228" required />
+                </label>
+                <label>
+                  <span>Activity (hrs/week)</span>
+                  <input type="number" name="activity" min="0" max="14" step="0.5" value="2.5" required />
+                </label>
+                <label>
+                  <span>Smoking status</span>
+                  <select name="smoking">
+                    <option value="1">Smoker</option>
+                    <option value="0" selected>Non-smoker</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Prior admissions</span>
+                  <input type="number" name="priorAdmissions" min="0" max="8" value="1" required />
+                </label>
+                <label>
+                  <span>Oxygen saturation</span>
+                  <input type="number" name="oxygen" min="82" max="100" value="95" required />
+                </label>
+              </div>
+              <button class="button button-primary full-width" id="predictButton" type="submit" onclick="window.runPrediction && window.runPrediction()">Predict patient risk</button>
+            </form>
+
+            <article class="panel result-panel" id="resultPanel">
+              <div class="result-badge" id="riskBadge">Awaiting input</div>
+              <div class="result-summary">
+                <h3 id="riskHeadline">Run a patient scenario</h3>
+                <div class="result-number" id="resultRiskNumber">0%</div>
+              </div>
+              <p id="riskProbability">Predicted disease risk will appear here.</p>
+              <div class="risk-meter">
+                <div id="riskMeterFill"></div>
+              </div>
+              <div class="quality-grid mini-quality-grid">
+                <div>
+                  <span>Accuracy</span>
+                  <strong id="qualityAccuracy">0%</strong>
+                </div>
+                <div>
+                  <span>Recall</span>
+                  <strong id="qualityRecall">0%</strong>
+                </div>
+              </div>
+              <div id="recommendations" class="recommendations"></div>
+              <div id="confusionMatrix" class="confusion-grid compact-confusion"></div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

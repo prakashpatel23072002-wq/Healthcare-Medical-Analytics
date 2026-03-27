@@ -1,0 +1,17 @@
+{
+  "name": "healthcare-medical-analytics",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deployable healthcare and medical analytics dashboard with risk prediction and resource planning.",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "pdf-parse": "^2.4.5",
+    "pptxgenjs": "^4.0.1"
+  }
+}
